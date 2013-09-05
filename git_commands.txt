@@ -1,0 +1,55 @@
+Git Commands
+
+$ git config --global user.name "chan"
+$ git config --global user.email "kin_onn@yahoo.com"
+$ git config --global core.editor ""edit --wait --resume "$@"" # for textwrangler
+$ git config --global core.editor ""subl --wait --resume "$@"" # for sublimetext
+$ git config --global core.editor "'C:/Program Files (x86)/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin" # for notepad++
+
+## Initialize working directory
+# cd into directory first
+$ git init #Initialized empty Git repo
+
+## Add, commit, modify
+$ git add .			# take snapshot of contents in current directory and adds it to the index
+$ git commit		# commit contents to repo. Add commit message
+$ git commit -a		# bypasses the add part
+$ git add file1 file2 # modify files then add their updated contents to the index
+$ git diff 			#show changes but haven't added to the index
+$ git status	#show status
+
+## Viewing project history
+$ git log		# view history of changes
+$ git log -p	# see complete diffs at each step
+$ git log --stat --summary	# overview of changes
+
+## Managing branches
+$ git branch 		# list of all existing branches
+$ git branch experimental		# create new branch named "experimental"
+$ git checkout experimental		# switch to experimental branch
+(edit file) then $ git commit -a
+$ git checkout master 	# switch back to master branch
+$ git diff	# shows differences between branches
+$ git merge experimental	# merge branches
+($ git commit -a)
+$ git branch -d experimental 	# delete experimental branch
+
+## Clone, Fetch, Push & Pull
+
+$ git remote add origin https://github.com/chankinonn/sanguirana.git	# define remote repository as "origin"
+$ git push -u origin master # pushes master branch to the remote repo defined by "origin"
+$ git clone https://github.com/chankinonn/xxx.git	# makes a git repo from a remote source. Also adds the original location as a remote so you can fetch from it again and push to it
+$ git fetch origin # fetches from the remote branch but does not merge it
+$ git pull # pulls from a remote branch and merges it
+
+## Create new repository on the command line
+touch README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/chankinonn/commands.git
+git push -u origin master
+
+
+
+

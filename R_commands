@@ -66,7 +66,7 @@ p1 <- ggplot(data=df, aes(x=x, y=y,colour=group)) + geom_point() +
   geom_path(data=df_ell, aes(x=x, y=y,colour=group))
 
 ## using proto ##
-p2 <-qplot(data=df, x=x,y=y,colour=group)+stat_ellipse(level=0.95)
+p2 <-qplot(data=df, x=x,y=y,colour=group, size=I(8))+stat_ellipse(level=0.95)+ theme(axis.text=element_text(size=20), axis.title=element_text(size=20), legend.text=element_text(size=20))
 
 
 ############################## ANALYSES #############################

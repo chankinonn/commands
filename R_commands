@@ -43,8 +43,22 @@ write.table(x, "filename.csv", sep=",", row.names=F)
 > pairs(data[,2:5], pch=19, col=factor(data[,5]))
 > plot(data[,2:5], pch=19, col=c("red", "blue", "green")[factor(data[,5])])
 
+### Plot PCA ### 
+plot(pca$x[,1], pca$x[,2], col=as.integer(data$identifier), pch=data[,4], xlab="PC I", ylab="PC II")
+
+### Plot 3D PCA ###
+(http://planspace.org/2013/02/03/pca-3d-visualization-and-clustering-in-r/)
+pca <- princomp(data[,7:17], scale.=FALSE, scores=TRUE)
+library(rgl)
+
+#species=grouping variable; size=plotting symbol size
+> plot3d(pca$scores[,1:3], col=data$species, size=8)
+
 ### Plot PCA with ggplot2; 
-library(“ggplot2”)species <- c(data[1])scores <- data.frame(species, pca$x[,1:2])qplot(x=PC1, y=PC2, data=scores, color=factor(species), size=I(8)) + theme(axis.text=element_text(size=20), axis.title=element_text(size=20), legend.text=element_text(size=20))
+library(“ggplot2”)
+species <- c(data[1])
+scores <- data.frame(species, pca$x[,1:2])
+qplot(x=PC1, y=PC2, data=scores, color=factor(species), size=I(8)) + theme(axis.text=element_text(size=20), axis.title=element_text(size=20), legend.text=element_text(size=20))
 
 ## Plot pca with 95% confidence ellipse ##
 library(MASS)
@@ -76,6 +90,9 @@ p2 <-qplot(data=df, x=x,y=y,colour=group, size=I(8))+stat_ellipse(level=0.95)+ t
 > colMeans(data[,2:5])	### Mean of columns 2:5
 > aggregate(data[,2:4], by=list(data[,5]), mean) # aggregate data by mean according to factor
 > aggregate(data[,2:4], by=list(data[,5]), sd) # aggregate according to standard deviation
+> row.names(mda)=mda[,1]
+> mda=mda[,-1]	# omit first column from dataset --> make it into a row
+
 
 ### PCA ###
 pca <-prcomp(x, scale=F) ## scale=T if you want to standardize data
@@ -83,16 +100,6 @@ summary(pca)
 (pca$sdev)^2 ## eigenvalues
 pca$rotation ## loadings
 
-### Plot PCA ### 
-plot(pca$x[,1], pca$x[,2], col=as.integer(data$identifier), pch=data[,4], xlab="PC I", ylab="PC II")
-
-### Plot 3D PCA ###
-(http://planspace.org/2013/02/03/pca-3d-visualization-and-clustering-in-r/)
-pca <- princomp(data[,7:17], scale.=FALSE, scores=TRUE)
-library(rgl)
-
-#species=grouping variable; size=plotting symbol size
-> plot3d(pca$scores[,1:3], col=data$species, size=8)
 
 ### LDA ###
 library(MASS)

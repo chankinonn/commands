@@ -46,13 +46,28 @@ write.table(x, "filename.csv", sep=",", row.names=F)
 ### Plot PCA ### 
 plot(pca$x[,1], pca$x[,2], col=as.integer(data$identifier), pch=data[,4], xlab="PC I", ylab="PC II")
 
-### Plot 3D PCA ###
+### Plot 3D PCA using rgl ###
 (http://planspace.org/2013/02/03/pca-3d-visualization-and-clustering-in-r/)
 pca <- princomp(data[,7:17], scale.=FALSE, scores=TRUE)
 library(rgl)
 
 #species=grouping variable; size=plotting symbol size
 > plot3d(pca$scores[,1:3], col=data$species, size=8)
+
+### using scatterplot3d ###
+scatterplot3d(data[,2:4], pch=19)
+## insert labels on points ##
+{
+   s3d <- scatterplot3d(mda[,1:3],        # x y and z axis
+                 color="blue", pch=19,    # filled blue circles
+                 type="h",                # vertical lines to the x-y plane
+                 xlab="Reptiles",
+                 ylab="Birds",
+                 zlab="Mammals")
+    s3d.coords <- s3d$xyz.convert(mda[,1:3])# convert 3D coords to 2D proj
+    text(s3d.coords$x, s3d.coords$y,        # x and y coordinates
+         labels=row.names(mda), cex=.8, pos=4)
+}
 
 ### Plot PCA with ggplot2; 
 library(“ggplot2”)

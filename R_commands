@@ -142,7 +142,24 @@ lda <- lda(species ~ SVL + HL + HW + ……… Fin3DW, data=data)
 lda.values <- predict(lad, data[3:19])	# get lad values
 ld1 <- lda.values$x[,1] # get values for LD1
 
-### Mann-Whitney test
+## LDA on PCA scores ##
+library(adegenet)
+> dapc4 <- dapc(adj[,3:11], adj$species)
+# code of for PCA variance inset#
+> myInset <- function(){
+ temp <- dapc4$pca.eig
+ temp <- 100* cumsum(temp)/sum(temp)
+ plot(temp, col=rep(c("black","lightgrey"), c(dapc4$n.pca,1000)), ylim=c(0,100),
+ xlab="PCA axis", ylab="Cumulated variance (%)", cex.lab=1.5, cex.axis=1.5, cex=1.25, pch=19, type="b", lwd=2)
+ }
+# plot
+>scatter(dapc4, bg="white", pch=19, cex=2.5, clab=0, col=mycol, solid=1, cell=2.0,cstar=1,scree.pca=F, scree.da=F, leg=T, posi.leg="bottomleft")
+# add inset to plot
+add.scatter(myInset(), posi="bottomright", inset=c(0.0,0.0), ratio=.25, bg=transp("white"))
+
+
+
+### Mann-Whitney test ####
 > wilcox.test(data[,14]~data[,4])
 
 ### Regression

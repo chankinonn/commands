@@ -43,6 +43,12 @@ write.table(x, "filename.csv", sep=",", row.names=F)
 > pairs(data[,2:5], pch=19, col=factor(data[,5]))
 > plot(data[,2:5], pch=19, col=c("red", "blue", "green")[factor(data[,5])])
 
+## Using the package "car" ##
+library(car)
+> scatterplotMatrix(~mpg+disp+drat+wt, data=mtcars, diag="density", pch=19) # green line = simple regression line; red solid line = loess regression line (smoothed approximation); red dotted line = 95% CI for the loess line
+
+> scatterplotMatrix(~mpg+disp+drat+wt | gear, data=mtcars, diag="density") # plot by symbol according conditioned on "gear"
+
 ### Plot PCA ### 
 plot(pca$x[,1], pca$x[,2], col=as.integer(data$identifier), pch=data[,4], xlab="PC I", ylab="PC II")
 

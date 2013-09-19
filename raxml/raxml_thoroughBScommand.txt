@@ -1,0 +1,4 @@
+nohup ./raxmlHPC -s ALL.dat -n BSvs1 -m GTRGAMMA -x 760201 -k -d -f a -q partitions -# 100 &
+
+## Partitions file
+DNA, 1_ND2 = 1-1321DNA, 2_Phos = 1322-1751DNA, 3_CMOS = 1752-2099DNA, 4_ptger = 2100-2587

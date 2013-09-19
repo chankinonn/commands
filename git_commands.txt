@@ -17,6 +17,7 @@ $ git commit -a		# bypasses the add part
 $ git add file1 file2 # modify files then add their updated contents to the index
 $ git diff 			#show changes but haven't added to the index
 $ git status	#show status
+git reset --soft HEAD~1		## remove latest commit
 
 ## Viewing project history
 $ git log		# view history of changes

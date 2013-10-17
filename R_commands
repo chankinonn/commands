@@ -159,6 +159,12 @@ p2 <-qplot(data=df, x=x,y=y,colour=group, size=I(8))+stat_ellipse(level=0.95)+ t
 
 >ggplot(datPred, aes(x=LD1, y=LD2, col=species) ) + geom_point( size = 8, aes(color = species))+theme_bw()+theme(axis.text=element_text(size=20), axis.title=element_text(size=20), legend.text=element_text(size=20))+geom_path(data=dat_ell,aes(x=x,y=y,color=species),size=1,linetype=1)
 
+
+## biplot on pca plots; http://www.vince.vu/software/ ##
+library(ggbiplot)
+ggbiplot(pca, obs.scale=1, var.scale=1, groups=iris[,5], ellipse=T, circle=T)
+
+
 ############################## ANALYSES #############################
 ############################## ANALYSES #############################
 

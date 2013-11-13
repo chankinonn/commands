@@ -80,9 +80,9 @@ scatterplot3d(data[,2:4], pch=19)
 
 ### Plot PCA with ggplot2; 
 library(“ggplot2”)
-species <- c(data[1])
+species <- data[,1]
 scores <- data.frame(species, pca$x[,1:2])
-qplot(x=PC1, y=PC2, data=scores, color=factor(species), size=I(8)) + theme(axis.text=element_text(size=20), axis.title=element_text(size=20), legend.text=element_text(size=20))
+qplot(x=PC1, y=PC2, data=scores, shape=factor(species), color=factor(species), size=I(8)) + theme(axis.text=element_text(size=20), axis.title=element_text(size=20), legend.text=element_text(size=20))
 
 ## Plot pca with 95% confidence ellipse ##
 library(MASS)

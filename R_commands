@@ -210,11 +210,7 @@ add.scatter(myInset(), posi="bottomright", inset=c(0.0,0.0), ratio=.25, bg=trans
 > wilcox.test(data[,14]~data[,4])
 
 ### Regression
-Glm.data <- glm(SVL~HL)
-#for multiple var use:
-GLM.data <-glm(SVL~ HL + HW + …)
-#residuals:
-Glm.resid <- resid(glm)
+reg <- lm(y ~ x) ## y= dependent/predicted; x= independent/predictor
 
 ### Write output to CSV
 Write.csv(glm.resid, file=”resid.csv”)

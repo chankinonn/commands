@@ -1,0 +1,21 @@
+# MrBayes block
+
+BEGIN mrbayes;
+	log start filename=limno_log.txt;
+	set autoclose=yes nowarn=yes;
+	outgroup fejervarya_limnocharis_GU934327.1;
+	lset nst=6 rates=gamma;
+	prset revmatpr=dirichlet(1,1,1,1,1,1)
+	statefreqpr=dirichlet(1,1,1,1)
+	shapepr=uniform(0.1,50);
+	unlink revmat=(all)
+	statefreq=(all)
+	shape = (all);
+	prset applyto=(all) ratepr=variable;
+	mcmc ngen=10000000 printfreq=10000 samplefreq=2000 nchains=4 temp=0.1;
+	sumt filename=limno_sumt;
+	sump filename=limno_sump;
+	
+#PAUP
+execeute xxx.nex
+showdist #uncorrected pairwise distance matrix

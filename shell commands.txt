@@ -5,6 +5,8 @@ tail -n     #display the last n lines
      -n +2  #skip the first 2 lines and display the rest till end
 wc file.txt     #count of lines, words, and bytes in file.txt
 which     #show location of executable file
+
+
 ##### GREP #####
 
 grep -l	"GAATTC" 'filename(s)'     #list only the filenames that contain GAATTC, not entire lines
@@ -23,6 +25,8 @@ cat *.seq | grep -l "GAATTC" > file.txt     #writes filenames that contain GAATT
 -n show the line numbers of the match
 -h hide filenames in the output
 
+
+
 ##### CURL #####
 curl "url" > file.txt     #download contents of url into file.txt; same as curl "url" -o file.txt
 # save all reports from day [01-30] in one text file:
@@ -31,3 +35,16 @@ curl "http://www.wunderground.com/history/airport/MIA/1992/08/[01-30]/DailyHisto
 
 # save each month's report in its own numbered file using the extension #1 in the file output
 curl "http://www.wunderground.com/history/airport/MIA/1979/[01-12]/01/DailyHistory.html?&format=1" -o Miami_1979_#1.txt
+
+
+##### SED #####
+s     #substitute
+p     #prints the line
+d     #deletes the line
+
+sed 's/xxx/zzz/' file.txt or sed 's:xxx:zzz:'  #replaces xxx with zzz in file.txt
+sed -E     #use extended regular expressions
+sed 's/xxx/&/'   #replaces the pattern with the matched pattern
+## EG: sed 's/xxx/(&)/' will return (xxx)
+## EG: replace [rana raniceps] with rana_raniceps
+sed -E 's:\[([a-z]+) ([a-z]+)\]:\1_\2:' file.txt

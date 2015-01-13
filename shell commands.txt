@@ -1,0 +1,33 @@
+##### cat, head, tail, wc, which #####
+cat     #displays and joins files
+head -n     #display the first n lines of the file
+tail -n     #display the last n lines
+     -n +2  #skip the first 2 lines and display the rest till end
+wc file.txt     #count of lines, words, and bytes in file.txt
+which     #show location of executable file
+##### GREP #####
+
+grep -l	"GAATTC" 'filename(s)'     #list only the filenames that contain GAATTC, not entire lines
+grep -i     #ignore letter case
+grep -v "Toolik Lake"     #return lines that don't match "Toolik Lake"
+cat *.seq | grep ">"     #returns lines that contain ">" from all files that end with .seq
+cat *.seq | grep -l "GAATTC" > file.txt     #writes filenames that contain GAATTC from all files that end with .seq to file.txt
+
+-c show the number of lines that contain the pattern, not the number of times the pattern matches. If the lines have multiple patterns, -c will underestimate
+     #EG: count the number of sequences in a FASTA file using grep -c ">" 
+	 #EG: number of lines in a file grep -c $, where $ denotes line endings
+-v invert search and show only lines that do not match
+-i match without regard to case
+-E use regex syntax with the exception of wildcards; use [] to indicate character ranges and enclose search terms in quotes
+-l list only the filename containing matches
+-n show the line numbers of the match
+-h hide filenames in the output
+
+##### CURL #####
+curl "url" > file.txt     #download contents of url into file.txt; same as curl "url" -o file.txt
+# save all reports from day [01-30] in one text file:
+
+curl "http://www.wunderground.com/history/airport/MIA/1992/08/[01-30]/DailyHistory.html?&format=1" >> miamiweather.txt 
+
+# save each month's report in its own numbered file using the extension #1 in the file output
+curl "http://www.wunderground.com/history/airport/MIA/1979/[01-12]/01/DailyHistory.html?&format=1" -o Miami_1979_#1.txt
